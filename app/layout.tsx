@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import { satoshi } from "../fonts/font";
+import React from "react";
 
 const geistKarla = Karla({
   variable: "--font-geist-karla",
@@ -9,7 +10,7 @@ const geistKarla = Karla({
 });
 
 export const metadata: Metadata = {
-  title: "SnapCast",
+  title: "WebCast",
   description: "A Screen Sharing App",
   icons: {
     icon: "/assets/icons/logo.svg",
