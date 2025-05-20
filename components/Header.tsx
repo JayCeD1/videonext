@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ICONS } from "@/constants";
+import DropdownList from "@/components/DropdownList";
 
 const Header = ({ subHeader, title, userImg }: SharedHeaderProps) => (
   <header className={"header"}>
@@ -9,7 +10,7 @@ const Header = ({ subHeader, title, userImg }: SharedHeaderProps) => (
       <div className="details">
         {userImg && (
           <Image
-            src={userImg || "/assets/images/dummy.jpg"}
+            src={userImg}
             alt={"user"}
             width={66}
             height={66}
@@ -17,8 +18,8 @@ const Header = ({ subHeader, title, userImg }: SharedHeaderProps) => (
           />
         )}
         <article>
-          <p>{title}</p>
-          <h1>{subHeader}</h1>
+          <p>{subHeader}</p>
+          <h1>{title}</h1>
         </article>
       </div>
       <aside>
@@ -52,7 +53,7 @@ const Header = ({ subHeader, title, userImg }: SharedHeaderProps) => (
           height={16}
         />
       </div>
-      {"<DropdownList />"}
+      <DropdownList />
     </section>
   </header>
 );
