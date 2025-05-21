@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import FormField from "@/components/FormField";
 import FileInput from "@/components/FileInput";
 import { useFileInput } from "@/lib/hooks/useFileInput";
@@ -11,7 +11,10 @@ const Page = () => {
     description: "",
     visibility: "public",
   });
-  const [error, setError] = useState(null);
+
+  const [error, setError] = useState("");
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Initialize useFileInput hooks for video and thumbnail
   const video = useFileInput(MAX_VIDEO_SIZE);
@@ -22,11 +25,38 @@ const Page = () => {
 
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      if (!video.file || !thumbnail.file) {
+        setError("Please upload both video and thumbnail files");
+        return;
+      }
+      if (!formData.title || !formData.description) {
+        setError("Please fill in the details");
+        return;
+      }
+      //upload to bunny
+      //upload thumbnail to DB
+      //attach thumbnail
+      //create new db entry for video metadata details (urls,data)
+    } catch (error) {
+      console.log("Error submitting form", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className={"wrapper-md upload-page"}>
       <h1>Upload a video</h1>
       {error && <div className="error-field">{error}</div>}
-      <form className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5">
+      <form
+        className="rounded-20 shadow-10 gap-6 w-full flex flex-col px-5 py-7.5"
+        onSubmit={}
+      >
         <FormField
           id={"title"}
           label={"Title"}
@@ -75,6 +105,13 @@ const Page = () => {
             { value: "private", label: "Private" },
           ]}
         />
+        <button
+          type={"submit"}
+          disabled={isSubmitting}
+          className={"submit-button"}
+        >
+          {isSubmitting ? "Uploading..." : "Upload video"}
+        </button>
       </form>
     </div>
   );
