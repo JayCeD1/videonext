@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Barton-Thormas-s-workspace-f3k6v7.eu-central-1.xata.sh/db/oj_webcast",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
