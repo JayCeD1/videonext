@@ -32,8 +32,9 @@ declare interface FileInputProps {
   id: string;
   label: string;
   accept: string;
-  file: File | null;
-  previewUrl: string | null;
+  file: File | null | undefined;
+  maxSize?: number;
+  previewUrl: string | null | undefined;
   inputRef: React.RefObject<HTMLInputElement | null>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
@@ -76,7 +77,7 @@ declare interface VideoCardProps {
   userImg: string;
   username: string;
   createdAt: Date;
-  views: number;
+  views: number | null;
   visibility: Visibility;
   duration: number | null;
 }

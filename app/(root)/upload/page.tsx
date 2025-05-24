@@ -11,23 +11,22 @@ import {
 } from "@/lib/action/video";
 import { useRouter } from "next/navigation";
 
-const uploadFileToBunny = (
+const uploadFileToBunny = async (
   file: File,
   uploadUrl: string,
   accessKey: string,
 ): Promise<void> => {
-  return fetch(uploadUrl, {
+  const response = await fetch(uploadUrl, {
     method: "PUT",
     headers: {
       "Content-Type": file.type,
       AccessKey: accessKey,
     },
     body: file,
-  }).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to upload file: ${response.statusText}`);
-    }
   });
+  if (!response.ok) {
+    throw new Error(`Failed to upload file: ${response.statusText}`);
+  }
 };
 const Page = () => {
   const [formData, setFormData] = useState({

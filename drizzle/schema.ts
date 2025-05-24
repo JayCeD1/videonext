@@ -78,7 +78,7 @@ export const videos = pgTable("videos", {
   userId: text("user_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
-  views: integer("views").notNull().default(0),
+  views: integer("views").default(0),
   duration: integer("duration"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
