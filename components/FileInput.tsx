@@ -1,20 +1,5 @@
-import React, { ChangeEvent, RefObject } from "react";
 import Image from "next/image";
 
-/**
- * Props for the FileInput component
- */
-type FileInputProps = {
-  id: string;
-  label: string;
-  accept: string;
-  file?: File | null;
-  previewUrl?: string;
-  inputRef: RefObject<HTMLInputElement>;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onReset: () => void;
-  type: "video" | "image";
-};
 
 const FileInput = ({
   id,
@@ -31,7 +16,7 @@ const FileInput = ({
     <section className={"file-input"}>
       <label htmlFor={id}>{label}</label>
       <input
-        type={file}
+        type="file"
         id={id}
         accept={accept}
         ref={inputRef}
@@ -39,7 +24,7 @@ const FileInput = ({
         onChange={onChange}
       />
       {!previewUrl ? (
-        <figure onClick={() => inputRef.current.click()}>
+        <figure onClick={() => inputRef.current?.click()}>
           <Image
             src={"/assets/icons/upload.svg"}
             alt={"upload"}
