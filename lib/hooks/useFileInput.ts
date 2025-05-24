@@ -22,9 +22,9 @@ export const useFileInput = (maxSize: number) => {
   // State to store the selected file
   const [file, setFile] = useState<File | null>();
   // State to store the preview URL for the file (image or video)
-  const [previewUrl, setPreviewUrl] = useState<string | null>();
+  const [previewUrl, setPreviewUrl] = useState<string>();
   // State to store video duration (only applicable for video files)
-  const [duration, setDuration] = useState<number | null>();
+  const [duration, setDuration] = useState<number>(0);
   // Reference to the file input DOM element
   // This allows us to programmatically interact with the input element
   const inputRef = useRef<HTMLInputElement | null>(null);

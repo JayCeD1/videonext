@@ -8,7 +8,7 @@ type FileInputProps = {
   id: string;
   label: string;
   accept: string;
-  file?: File;
+  file?: File | null;
   previewUrl?: string;
   inputRef: RefObject<HTMLInputElement>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -31,7 +31,7 @@ const FileInput = ({
     <section className={"file-input"}>
       <label htmlFor={id}>{label}</label>
       <input
-        type={"file"}
+        type={file}
         id={id}
         accept={accept}
         ref={inputRef}
