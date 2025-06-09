@@ -42,8 +42,8 @@ const VideoDetailHeader = ({
             <Image
               src={userImg ?? ""}
               alt={"user"}
-              width={36}
-              height={36}
+              width={24}
+              height={24}
               className={"rounded-full"}
             />
             <h2>{username ?? "Guest"}</h2>
