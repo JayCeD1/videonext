@@ -41,11 +41,37 @@ export const DEFAULT_VIDEO_CONFIG = {
   frameRate: { ideal: 30 },
 };
 
-export const DEFAULT_RECORDING_CONFIG = {
-  mimeType: "video/webm;codecs=vp9,opus",
-  audioBitsPerSecond: 128000,
-  videoBitsPerSecond: 2500000,
-};
+// Make sure the config is also created only when MediaRecorder is available
+export const DEFAULT_RECORDING_CONFIG =
+  typeof window !== "undefined" && window.MediaRecorder
+    ? {
+        mimeType: getSupportedMimeType(),
+        audioBitsPerSecond: 128000,
+        videoBitsPerSecond: 2500000,
+      }
+    : {};
+
+function getSupportedMimeType() {
+  const types = [
+    "video/webm;codecs=vp9,opus",
+    "video/webm;codecs=vp8,opus",
+    "video/webm;codecs=h264,opus",
+    "video/webm",
+  ];
+
+  // Check if we're in a browser environment
+  if (typeof window === "undefined" || !window.MediaRecorder) {
+    return "";
+  }
+
+  for (const type of types) {
+    if (MediaRecorder.isTypeSupported(type)) {
+      return type;
+    }
+  }
+
+  return "";
+}
 
 export const dummyCards = [
   {
