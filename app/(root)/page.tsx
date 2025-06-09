@@ -1,7 +1,5 @@
-import React, { use } from "react";
 import Header from "@/components/Header";
 import VideoCard from "@/components/VideoCard";
-import { dummyCards } from "@/constants";
 import { getAllVideos } from "@/lib/action/video";
 import EmptyState from "@/components/EmptyState";
 
